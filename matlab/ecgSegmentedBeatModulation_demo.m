@@ -95,7 +95,7 @@ hold('off');
 ylim([-0.75,1.25]);
 title('Pre-processed ECG Signal');
 xlabel('Time [s]');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')
 
 
 % mCC Computation.
@@ -110,7 +110,7 @@ hold('off');
 ylim([-0.75,1.25]);
 title('mCC Computation');
 xlabel('Time [s]');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')
 
 
 % Signal and motion artifact.
@@ -128,7 +128,7 @@ subplot(2,1,1);
 plot(t,ecg_pre2, 'LineWidth',2, 'Color',blue);
 ylim([-0.75,1.25]);
 title('Pre-processed ECG');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')
 subplot(2,1,2);
 hold('on');
 plot(t,artifact, 'LineWidth',2, 'Color',gray);
@@ -137,7 +137,7 @@ hold('off');
 ylim([-0.75,1.25]);
 title('Clean ECG and Artifact');
 xlabel('Time [s]');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')
 legend({'Motion Artifact','Clean ECG'});
 legend boxoff;
 
@@ -157,15 +157,15 @@ subplot(3,1,1);
 plot(t,ecg_mV,'Color',blue);
 ylim([-0.75,1.25]);
 title('Original ECG');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')
 subplot(3,1,2);
 plot(t,ecg_pre,'Color',blue);
 ylim([-0.75,1.25]);
 title('Preprocessed ECG');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')
 subplot(3,1,3);
 plot(t,ecg_clean2,'Color',blue);
 ylim([-0.75,1.25]);
 title('Segmented-Beat Modulation Filtered ECG');
 xlabel('Time [s]');
-ylabel('Amplitude [\muV]')
+ylabel('Amplitude [mV]')

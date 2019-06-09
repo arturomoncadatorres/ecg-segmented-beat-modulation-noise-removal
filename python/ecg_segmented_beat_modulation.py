@@ -20,6 +20,13 @@ from matplotlib import pyplot as plt
 
 # Define paths.
 PATH_DATA = pathlib.Path(r'../data/')
+PATH_IMAGES = pathlib.Path(r'../images/')
+
+# Make sure directories exist
+if not PATH_DATA.exists():
+    raise Exception("Data directory does not exist.")
+if not PATH_IMAGES.exists():
+    PATH_IMAGES.mkdir()
 
 
 #%%
@@ -210,7 +217,7 @@ if __name__ == '__main__':
     fig, ax = plt.subplots(1, 1, figsize=[10, 5])
     plt.plot(t, ecg_mV, color=gray)
     plt.plot(t, ecg_pre, color=blue)
-    ax.legend(["Raw", "Pre-processed"])
+    ax.legend(["Raw", "Pre-processed"], frameon=False)
     ax.set_xlabel("Time [s]")
     ax.set_ylabel("Amplitude [mV]")
     
@@ -226,7 +233,7 @@ if __name__ == '__main__':
     fig, ax = plt.subplots(1, 1, figsize=[10, 5])
     plt.plot(t, ecg_pre, color=blue)
     plt.plot(r_peaks*Ts, r_peaks_prop['peak_heights'], 'or')
-    ax.legend(["ECG", "Peaks"])
+    ax.legend(["ECG", "Peaks"], frameon=False)
     ax.set_xlabel("Time [s]")
     ax.set_ylabel("Amplitude [mV]")
     
@@ -241,12 +248,18 @@ if __name__ == '__main__':
     t_mCC = np.arange(0, len(mCC)*Ts, Ts)
     
     fig, ax = plt.subplots(1, 1, figsize=[5, 2.5])
-    for cc_modulated_ in cc_modulated:
-        plt.plot(t_mCC, cc_modulated_, color=gray)
-    plt.plot(t_mCC, mCC, color=blue)
+    for ii, cc_modulated_ in enumerate(cc_modulated):
+        if ii == 1:
+            line_legend = "Noisy cycle"
+        else:
+            line_legend = None
+        plt.plot(t_mCC, cc_modulated_, color=gray, label=line_legend)
+    plt.plot(t_mCC, mCC, color=blue, label="Median cycle")
     ax.set_xlabel("Time [s]")
-    ax.set_ylabel("Amplitude [$\mu$V]")
+    ax.set_ylabel("Amplitude [mV]")
     ax.set_ylim([-0.75, 1.25])
+    ax.legend(frameon=False)
+    fig.savefig(PATH_IMAGES/'ecg_template.png', dpi=1000, bbox_inches='tight')
     
     
     # Signal and motion artifact.
@@ -260,9 +273,9 @@ if __name__ == '__main__':
     plt.plot(t_artifact, artifact, color=gray)
     plt.plot(t_artifact, ecg_clean, color=blue)
     ax.set_xlabel("Time [s]")
-    ax.set_ylabel("Amplitude [$\mu$V]")
+    ax.set_ylabel("Amplitude [mV]")
     ax.set_ylim([-0.75, 1.25])
-    ax.legend(["Motion artifact", "Clean ECG"])
+    ax.legend(["Motion artifact", "Clean ECG"], frameon=False)
     
 
     # Signal comparison.
@@ -278,6 +291,7 @@ if __name__ == '__main__':
     plt.plot(t, ecg_pre, color=gray)
     plt.plot(t, ecg_clean2, color=blue)
     ax.set_xlabel("Time [s]")
-    ax.set_ylabel("Amplitude [$\mu$V]")
+    ax.set_ylabel("Amplitude [mV]")
     ax.set_ylim([-0.75, 1.25])
-    ax.legend(["Raw", "Pre-processed", "Clean"])
+    ax.legend(["Raw", "Pre-processed", "Clean"], frameon=False)
+    fig.savefig(PATH_IMAGES/'ecg_comparison.png', dpi=1000, bbox_inches='tight')
