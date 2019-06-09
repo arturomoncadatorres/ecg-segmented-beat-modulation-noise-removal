@@ -102,8 +102,8 @@ def ecg_segmented_beat_modulation_noise_removal(ecg, fs, r_peaks, delta_t=40e-3)
     tup_segments_modulated = list()
     cc_modulated = list()
     for ii in range(0, n_beats-1):
-        cc_segmentation.append(ecg[cc[ii]:cc[ii+1]-1])
-        qrs_segments.append(cc_segmentation[ii][0:int(delta_t_n*2)-1])
+        cc_segmentation.append(ecg[cc[ii]:cc[ii+1]])
+        qrs_segments.append(cc_segmentation[ii][0:int(delta_t_n*2)])
         tup_segments.append(cc_segmentation[ii][int(delta_t_n*2):])
 
         # Modulate TUP segments.
@@ -121,15 +121,14 @@ def ecg_segmented_beat_modulation_noise_removal(ecg, fs, r_peaks, delta_t=40e-3)
     #%% Clean ECG extraction (Fig. 4)
     
     # mCC segmentation.
-    qrs_segment_median = mCC[0:int(delta_t_n*2)-1]
+    qrs_segment_median = mCC[0:int(delta_t_n*2)]
     tup_segment_median = mCC[int(delta_t_n*2):]
     
     # Demodulate tup_segment_median.
     tup_segments_demodulated = list()
     cc_demodulated = list()
     for ii in range(0, n_beats-1):
-        #TODO: Fix small bug with correct number of samples (+2 correction).
-        tup_segments_demodulated.append(signal.resample(tup_segment_median, len(tup_segments[ii])+2))
+        tup_segments_demodulated.append(signal.resample(tup_segment_median, len(tup_segments[ii])))
         cc_demodulated.append(np.concatenate((qrs_segment_median, tup_segments_demodulated[ii])))
 
 
