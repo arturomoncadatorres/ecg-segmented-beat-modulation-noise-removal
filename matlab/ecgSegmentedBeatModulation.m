@@ -107,7 +107,7 @@ for ii = 1:nBeats-1
 end
 
 % Compute mCC (median of the cardiac cycle).
-% The original paper uses the mean.
+% The original paper uses the median.
 % If wished, this could be replaced by the mean.
 mCC = median(modulatedCC,1);
 

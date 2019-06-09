@@ -39,7 +39,7 @@ deltaT_N = deltaT * fs;     % [samples]
 tmp = load(fullfile('..','data','ecg'));
 ecg = tmp.val;
 
-% Each row corresponds to different signals..
+% Each row corresponds to different signals.
 % For now, we will work with ECG3.
 ecg_raw = ecg(3,:);
 
