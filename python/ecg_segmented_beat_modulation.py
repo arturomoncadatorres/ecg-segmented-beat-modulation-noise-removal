@@ -146,7 +146,7 @@ def ecg_segmented_beat_modulation_noise_removal(ecg, fs, r_peaks, delta_t=40e-3)
 
 
 #%%
-if __name__ == '__main__':
+def main():
     """ 
     Main to demo the ecg_segmented_beat_modulation_noise_removal function.
     """
@@ -295,3 +295,8 @@ if __name__ == '__main__':
     ax.set_ylim([-0.75, 1.25])
     ax.legend(["Raw", "Pre-processed", "Clean"], frameon=False)
     fig.savefig(PATH_IMAGES/'ecg_comparison.png', dpi=1000, bbox_inches='tight')
+    
+    
+#%%
+if __name__ == '__main__':
+    main()
