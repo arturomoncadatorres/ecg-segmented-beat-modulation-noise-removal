@@ -1,6 +1,6 @@
 # ECG Noise Removal Using Segmented-beat Modulation
----
-This is the Python and MATLAB implementation of the algorithm proposed in
+
+This is the [Python](./python) and [MATLAB](./matlab) implementation of the algorithm proposed in
 the paper:
 
 > Agostinelli, Angela, Corrado Giuliani, and Laura Burattini. ["Extracting a clean ECG from a noisy recording: a new method based on segmented-beat modulation."](<https://ieeexplore.ieee.org/abstract/document/7042976>). Computing in Cardiology Conference (CinC), 2014. IEEE, 2014.
